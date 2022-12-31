@@ -1,0 +1,42 @@
+import unittest
+
+from 0-add_integer import add_integer
+
+class TestAddInteger(unittest.TestCase):
+    def test_integer_addition(self):
+        # Test that the function correctly adds two integers
+        result = add_integer(1, 2)
+        self.assertEqual(result, 3)
+        
+        result = add_integer(-1, -2)
+        self.assertEqual(result, -3)
+        
+    def test_float_addition(self):
+        # Test that the function correctly adds two floats
+        result = add_integer(1.5, 2.5)
+        self.assertEqual(result, 4)
+        
+        result = add_integer(-1.5, -2.5)
+        self.assertEqual(result, -4)
+        
+    def test_default_value(self):
+        # Test that the function uses the default value for b if no value is provided
+        result = add_integer(1)
+        self.assertEqual(result, 99)
+        
+    def test_invalid_input(self):
+        # Test that the function raises a TypeError if given invalid input
+        with self.assertRaises(TypeError):
+            add_integer('a', 'b')
+            
+        with self.assertRaises(TypeError):
+            add_integer(None, None)
+            
+        with self.assertRaises(TypeError):
+            add_integer([], [])
+            
+        with self.assertRaises(TypeError):
+            add_integer({}, {})
+
+if __name__ == '__main__':
+    unittest.main()
