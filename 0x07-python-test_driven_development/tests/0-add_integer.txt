@@ -1,42 +1,51 @@
-import unittest
+'''
+# Importing the required function
+>>> from importlib import import_module
+>>> add_integer = import_module('0-add_integer').add_integer
 
-from 0-add_integer import add_integer
+# Valid test arguments
+>>> add_integer(3, 4)
+7
+>>> add_integer(2)
+100
+>>> add_integer(1.2, 5.8)
+6
 
-class TestAddInteger(unittest.TestCase):
-    def test_integer_addition(self):
-        # Test that the function correctly adds two integers
-        result = add_integer(1, 2)
-        self.assertEqual(result, 3)
-        
-        result = add_integer(-1, -2)
-        self.assertEqual(result, -3)
-        
-    def test_float_addition(self):
-        # Test that the function correctly adds two floats
-        result = add_integer(1.5, 2.5)
-        self.assertEqual(result, 4)
-        
-        result = add_integer(-1.5, -2.5)
-        self.assertEqual(result, -4)
-        
-    def test_default_value(self):
-        # Test that the function uses the default value for b if no value is provided
-        result = add_integer(1)
-        self.assertEqual(result, 99)
-        
-    def test_invalid_input(self):
-        # Test that the function raises a TypeError if given invalid input
-        with self.assertRaises(TypeError):
-            add_integer('a', 'b')
-            
-        with self.assertRaises(TypeError):
-            add_integer(None, None)
-            
-        with self.assertRaises(TypeError):
-            add_integer([], [])
-            
-        with self.assertRaises(TypeError):
-            add_integer({}, {})
+# Test for invalid arguments
+>>> try:
+...     add_integer('3', 3)
+... except TypeError as ex:
+...     print(ex.args[0])
+a must be an integer
+>>> try:
+...     add_integer(('3'), 3)
+... except TypeError as ex:
+...     print(ex.args[0])
+a must be an integer
+>>> try:
+...     add_integer(3, None)
+... except TypeError as ex:
+...     print(ex.args[0])
+b must be an integer
+>>> try:
+...     add_integer(3, '4')
+... except TypeError as ex:
+...     print(ex.args[0])
+b must be an integer
+>>> try:
+...     add_integer(float('inf'), float('inf'))
+... except Exception as ex:
+...     print(ex.args[0])
+cannot convert float infinity to integer
+>>> try:
+...     add_integer(float('inf'), 4)
+... except Exception as ex:
+...     print(ex.args[0])
+cannot convert float infinity to integer
+>>> try:
+...     add_integer(float('NaN'), 5)
+... except Exception as ex:
+...     print(ex.args[0])
+cannot convert float NaN to integer
 
-if __name__ == '__main__':
-    unittest.main()
+'''
