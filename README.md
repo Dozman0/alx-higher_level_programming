@@ -1,1 +1,1 @@
-Python programming and higher level languages
+0x06. Python - Classes and Objects
